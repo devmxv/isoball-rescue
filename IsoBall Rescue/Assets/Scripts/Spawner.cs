@@ -6,7 +6,7 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
 
-    [SerializeField] GameObject ballPrefab;
+    [SerializeField] GameObject objectPrefab;
     [SerializeField] float spawnTime = 10f;
     //[SerializeField]
     // Start is called before the first frame update
@@ -18,10 +18,12 @@ public class Spawner : MonoBehaviour
         while (_spawn)
         {
             yield return new WaitForSeconds(spawnTime);
-            SpawnBall();
+            Spawn();
         }
     }
 
+
+    //---Testing purposes
     //private void Start()
     //{
     //    SpawnBall();
@@ -33,8 +35,8 @@ public class Spawner : MonoBehaviour
         
     }
 
-    private void SpawnBall()
+    private void Spawn()
     {
-        Instantiate(ballPrefab, transform.position, Quaternion.identity);
+        Instantiate(objectPrefab, transform.position, Quaternion.identity);
     }
 }

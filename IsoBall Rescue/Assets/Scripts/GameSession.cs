@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class GameSession : MonoBehaviour
 {
-    //---List to register/unregister Ball
+    //---List to register/unregister Ball and recycle it
     private List<Ball> _ballList = new List<Ball>();
     //---Make it singleton
     private static GameSession _instance;
@@ -21,10 +21,11 @@ public class GameSession : MonoBehaviour
     }
 
     int score = 0;
-    private bool _isSlowMoFinished;
+    public static bool _isSlowMoActive;
+    public static bool slowmoReady;
+    
     
 
-    [SerializeField] GameObject losePanel;
     //---Get the index of the scene
     private int _currentSceneIndex;
 
@@ -36,22 +37,23 @@ public class GameSession : MonoBehaviour
 
     private void Start()
     {
-        _isSlowMoFinished = false;
-        losePanel.SetActive(false);
-        //---Get Text component
-
+        _isSlowMoActive = false;
+        slowmoReady = false;
+        //losePanel.SetActive(false);
     }
 
     private void Update()
     {
-        HandleSlowmoPoints();
-        //if (_isSlowMoFinished == true)
-        //    FindObjectOfType<SlowMoManager>().ResetSlowMo();
-        //_isSlowMoFinished = false;
+
+        HandleSlowmo();
+
+        if (_isSlowMoActive == true)
+        {
+            UIManager.Instance.ResetSlowMo();
+            _isSlowMoActive = false;
+        }
+        
     }
-
-
-    //---Ball funcionality
 
 #region
     
@@ -67,6 +69,7 @@ public class GameSession : MonoBehaviour
         Instance._ballList.Remove(removeBallRef);
     }
 
+    //---Helper of the enemy to get the closest ball so it can chase it
     public static Ball getClosestBall(Vector3 pos)
     {
         Ball closestBall = null;
@@ -105,23 +108,44 @@ public class GameSession : MonoBehaviour
 
     public void ShowGameOver()
     {
-        losePanel.SetActive(true);
+        //FindObjectOfType<UIManager>().EnableLosePanel();
+        UIManager.Instance.EnableLosePanel();
     }
 
 
     //---Checks the points and if it is ready to
     //---activate Slow Mo!
-    public void HandleSlowmoPoints()
+    public void HandleSlowmo()
     {
+        //---Obtain current score
         int score = GetScore();
-        if (score >= 2)
+        if (score >= 0)
         {
-            Debug.Log("Slow Mo Active!");
-            FindObjectOfType<TimeManager>().SetSlowMo();
-            _isSlowMoFinished = true;
-            
-        }
+            Debug.Log("Slow Mo ready to use!");
+            slowmoReady = true;
+            UIManager.Instance.EnableSlowmoText();
+            //---Using right click of mouse to activate SlowMo
+            if (Input.GetMouseButton(1))
+            {
+                StartCoroutine(SlowMoStart());
+                //FindObjectOfType<TimeManager>().SetSlowMo();                
+            }
 
+
+        }
+    }
+
+    IEnumerator SlowMoStart()
+    {
+        //---Enable Slow Mo
+        TimeManager.Instance.SetSlowMo();
+        //---Return slider to 0
+        UIManager.Instance.ResetSlowMo();
+
+        yield return new WaitForSecondsRealtime(5f);
+
+        Debug.Log("Powerup ended" + _isSlowMoActive);
+        _isSlowMoActive = false;
         
     }
 

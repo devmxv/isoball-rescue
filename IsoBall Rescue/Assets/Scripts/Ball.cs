@@ -7,6 +7,7 @@ public class Ball : MonoBehaviour
 {
     [SerializeField] GameObject goal;
     [SerializeField] NavMeshAgent ball;
+    [SerializeField] int scoreBall = 5;
 
 
     // Start is called before the first frame update
@@ -28,7 +29,7 @@ public class Ball : MonoBehaviour
         if (GameObject.FindGameObjectWithTag("Goal"))
         {
             //---Add score to game
-            GameSession.Instance.AddToScore(1);
+            GameSession.Instance.AddToScore(scoreBall);
             Destroy(this.gameObject);
         }   
     }
