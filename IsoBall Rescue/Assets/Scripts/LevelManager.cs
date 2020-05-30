@@ -66,15 +66,16 @@ public class LevelManager : MonoBehaviour
 
     public void LoadGameOver()
     {
-        StartCoroutine(WaitAndLoad());
+        StartCoroutine(WaitAndLoad());        
         //SceneManager.LoadScene(2);
+        
     }
 
 
     public IEnumerator WaitAndLoad()
     {
         yield return new WaitForSecondsRealtime(3f);
-        SceneManager.LoadScene(2);        
+        SceneManager.LoadScene(3);        
     }
 
     public void PlayButtonPressedSound() 

@@ -28,6 +28,8 @@ public class GameSession : MonoBehaviour
     [SerializeField] AudioClip slowmoEnabledSFX;
     //---Sound when the chased object (ambulance) reaches the goal
     [SerializeField] AudioClip chasedSurvivedSFX;
+    //---Sound when SlowMo is ready to use
+    [SerializeField] AudioClip slowmoReadySFX;
 
     int score = 0;
     int slowmoCount = 0;
@@ -58,7 +60,10 @@ public class GameSession : MonoBehaviour
         isSlowMoActive = false;
         slowmoReady = false;
         slowmoAvailable = true;
-        //losePanel.SetActive(false);
+        //losePanel.SetActive(false);   
+
+        
+        //Debug.Log("Final Score: " + currentScore);
     }
 
     private void Update()
@@ -157,6 +162,11 @@ public class GameSession : MonoBehaviour
         AudioSource.PlayClipAtPoint(chasedSurvivedSFX, Camera.main.transform.position);
     }
 
+    public void PlaySlowmoReadySound()
+    {
+        AudioSource.PlayClipAtPoint(slowmoReadySFX, Camera.main.transform.position);
+    }
+
 
     //---Checks the points and if it is ready to
     //---activate Slow Mo!
@@ -181,7 +191,7 @@ public class GameSession : MonoBehaviour
 
         if(slowmoReady == true)
         {
-            UIManager.Instance.EnableSlowmoText();
+            UIManager.Instance.EnableSlowmoText();            
             //---Using right click of mouse to activate SlowMo
             if (Input.GetMouseButtonDown(1) && isSlowMoActive == false)
             {
@@ -193,7 +203,7 @@ public class GameSession : MonoBehaviour
                     StopCoroutine(_slowMoCoroutine);
                     //StartCoroutine(ResetSlowmo());                    
                 }
-                _slowMoCoroutine = StartCoroutine(SlowMoStart());
+                _slowMoCoroutine = StartCoroutine(SlowMoStart());               
                 slowmoAvailable = false;
                 Invoke("ResetSlowMoStatus", 5f);
                 UIManager.Instance.ResetSlowMo();
@@ -237,6 +247,12 @@ public class GameSession : MonoBehaviour
         Time.timeScale = 1;
         Debug.Log("<color=red><b>Ending SlowMo</b></color> " + Time.unscaledTime);
         isSlowMoActive = false;        
+    }
+
+    //---Saves Score to PlayerPrefs file (WIP)
+    public void SaveScore()
+    {
+        PlayerPrefs.SetInt("HighScores", GetScore());
     }
 
 
