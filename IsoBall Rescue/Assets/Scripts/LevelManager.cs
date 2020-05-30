@@ -17,6 +17,7 @@ public class LevelManager : MonoBehaviour
     }
 
     private int _currentSceneIndex;
+    [SerializeField] AudioClip acceptActionSFX;
 
     //public void
 
@@ -38,7 +39,8 @@ public class LevelManager : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene(_currentSceneIndex + 1);        
+        SceneManager.LoadScene(_currentSceneIndex + 1);
+        PlayButtonPressedSound();
     }
 
     public void LoadMainMenu()
@@ -72,7 +74,12 @@ public class LevelManager : MonoBehaviour
     public IEnumerator WaitAndLoad()
     {
         yield return new WaitForSecondsRealtime(3f);
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(2);        
+    }
+
+    public void PlayButtonPressedSound() 
+    {
+        AudioSource.PlayClipAtPoint(acceptActionSFX, Camera.main.transform.position);
     }
 
 
