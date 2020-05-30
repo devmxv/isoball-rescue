@@ -29,9 +29,15 @@ public class Enemy : MonoBehaviour
             //FindObjectOfType<Player>().ReduceHealth(1);
             //---Game Over!
             FindObjectOfType<Ball>().PlayDeathSound();                                    
-            UIManager.Instance.EnableLosePanel();            
+            UIManager.Instance.EnableLosePanel();
+
+            Debug.Log(GameSession.Instance.GetScore());
+
             Debug.Log("Game Over!");
             //LevelManager.Instance.LoadGameOver();
+
+            GameSession.Instance.SaveScore();
+
             FindObjectOfType<LevelManager>().LoadGameOver();
 
         }

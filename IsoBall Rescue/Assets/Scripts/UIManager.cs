@@ -21,6 +21,10 @@ public class UIManager : MonoBehaviour
 
     private GameObject _scoreNumberObj;
     private GameObject _sliderSlowMo;
+
+    private GameObject _finalScoreObj;
+    private Text _finalScoreText;
+
     private Slider _sliderSlowMoValue;
     private GameObject _slowMoText;
     private Text _scoreText;
@@ -50,7 +54,7 @@ public class UIManager : MonoBehaviour
         _sliderSlowMo = this.transform.Find("Slider").gameObject;
         _sliderSlowMoValue = _sliderSlowMo.GetComponent<Slider>();
 
-        _slowMoText = this.transform.Find("Right Click").gameObject;
+        _slowMoText = this.transform.Find("Right Click").gameObject;               
 
         losePanel.SetActive(false);
         _slowMoText.SetActive(false);
@@ -63,9 +67,9 @@ public class UIManager : MonoBehaviour
     {
 
         _score = GameSession.Instance.GetSlowmoCounter();
-        _scoreText.text = GameSession.Instance.GetScore().ToString();
+        _scoreText.text = GameSession.Instance.GetScore().ToString();        
         _sliderSlowMoValue.value = _score;
-
+        
         //---Pause menu
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -121,6 +125,7 @@ public class UIManager : MonoBehaviour
 
     public void EnableSlowmoText()
     {
-        _slowMoText.SetActive(true);
+        _slowMoText.SetActive(true);        
     }
+    
 }
