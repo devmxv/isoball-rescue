@@ -61,7 +61,8 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _score = GameSession.Instance.GetScore();
+
+        _score = GameSession.Instance.GetSlowmoCounter();
         _scoreText.text = GameSession.Instance.GetScore().ToString();
         _sliderSlowMoValue.value = _score;
 
@@ -83,13 +84,9 @@ public class UIManager : MonoBehaviour
 
     //---Reset the slowMo Slider when the powerup depletes
     public void ResetSlowMo()
-    {
-        if (GameSession._isSlowMoActive == true)
-        {
-            Debug.Log("Slow Mo Restarted!" + GameSession._isSlowMoActive);
-            _sliderSlowMoValue.value = 0;
-        }
-        
+    {        
+        //Debug.Log("Slow Mo Restarted!" + GameSession._isSlowMoActive);
+         _sliderSlowMoValue.value = 0;                
     }
 
     //---Set off the lose panel when losing (lol)
@@ -102,6 +99,7 @@ public class UIManager : MonoBehaviour
     public void EnableLosePanel()
     {
         losePanel.SetActive(true);
+        Time.timeScale = 0;
     }
 
     public void ShowPauseMenu()
@@ -117,6 +115,8 @@ public class UIManager : MonoBehaviour
     public void ResumeGame()
     {
         pausePanel.SetActive(false);
+        Time.timeScale = 1;
+        gameIsPaused = false;
     }
 
     public void EnableSlowmoText()

@@ -43,3 +43,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d314a28f593e7d4fadfd36ee9bee7e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreToEnableSlowmo: 5
+  slowmoEnabledSFX: {fileID: 8300000, guid: 77139f847aedbcb45a691dd1cce650fc, type: 3}
+  chasedSurvivedSFX: {fileID: 8300000, guid: 1b0eaf4a826f2114da53d40dee42356b, type: 3}

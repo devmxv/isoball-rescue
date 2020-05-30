@@ -1,9 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] int health;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -18,37 +21,40 @@ public class Player : MonoBehaviour
 
     private void DestroyEnemy()
     {
+
+        //---Mouse click to destroy enemy cars
         if (Input.GetMouseButton(0))
         {
-            //---Returns a Vector 3 pos with mouse position
-            //---I have been changing the z value to 50f in order to work
-            Vector3 worldMousePos = Camera.main.ScreenToWorldPoint(
-                new Vector3(Input.mousePosition.x, Input.mousePosition.y, 50f));
-
-            //---Get direction vector from camera pos to mouse pos in world space
-            Vector3 direction = worldMousePos - Camera.main.transform.position;
-            Debug.Log(direction);
-
             RaycastHit hit;
-
-            //---Cast a ray from the camera in the given direction
-            if(Physics.Raycast(Camera.main.transform.position, direction, out hit, Mathf.Infinity))
+            //---Get the mousePosition when clicking
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if(Physics.Raycast(ray, out hit, Mathf.Infinity))
             {
-
+                //---Only applies for enemies showing up
                 if (hit.collider.gameObject.tag == "Enemy")
                 {
-                    Debug.DrawLine(Camera.main.transform.position, hit.point, Color.green, 0.5f);
+                    //Debug.DrawLine(Camera.main.transform.position, hit.point, Color.green, 0.5f);
+                    FindObjectOfType<Enemy>().PlayDestroyAudio();
+                    //---Add 1 to slowMoCounter so each 5 points the player has access to slowMo
+                    GameSession.Instance.AddSlowmoCount(1);
                     GameSession.Instance.AddToScore(1);
                     Destroy(hit.collider.gameObject);
                 }
-                //Debug.DrawLine(Camera.main.transform.position, hit.point, Color.green, 0.5f);
-                //Destroy(hit.collider.gameObject);
-
-            } else
-            {
-                Debug.DrawLine(Camera.main.transform.position, worldMousePos, Color.red, 0.5f);
-            }
-
+            }            
         }
     }
+
+
+    //---TODO: For next release
+    public int GetHealth()
+    {
+        return health;
+    }
+
+    public void ReduceHealth(int health)
+    {
+        health -= 1;
+    }
+
+    
 }
