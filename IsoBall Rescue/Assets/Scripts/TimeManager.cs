@@ -20,6 +20,7 @@ public class TimeManager : MonoBehaviour
 
     [SerializeField] float slowdownFactor = 0.05f;
     [SerializeField] float slowdownLength = 2f;
+    
 
     private void Awake()
     {
@@ -38,7 +39,7 @@ public class TimeManager : MonoBehaviour
         //---Using right click to activate slowmo
         //---This is for testing purposes, it is active using conditions
         //SetSlowMo();
-        UnsetSlowmo();
+        //UnsetSlowmo();
         
         
 
@@ -55,7 +56,7 @@ public class TimeManager : MonoBehaviour
         //    //---smooth slowMo
         //    Time.fixedDeltaTime = Time.timeScale * .02f;
         //}
-        GameSession._isSlowMoActive = true;
+        GameSession.isSlowMoActive = true;
         Time.timeScale = slowdownFactor;
         // 1/0.05 = 20 times slower than normal
 
@@ -67,13 +68,13 @@ public class TimeManager : MonoBehaviour
     public void UnsetSlowmo()
     {
         //---if game is not paused and slowMo is disabled
-        if (UIManager.gameIsPaused == false && GameSession._isSlowMoActive == false)
+        if (UIManager.gameIsPaused == false && GameSession.isSlowMoActive == false)
         {
            
             //---Return progresively the scale of time to 1
             Time.timeScale += (1f / slowdownLength) * Time.unscaledDeltaTime;
             Time.timeScale = Mathf.Clamp(Time.timeScale, 0f, 1f);
-            Debug.Log("Setting back time!" + UIManager.gameIsPaused);
+            Debug.Log("Setting back time! GameIsPaused " + UIManager.gameIsPaused);
         }
-    }
+    }    
 }

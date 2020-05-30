@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 524982221385105300}
+  - component: {fileID: 3906475195388531582}
   m_Layer: 0
   m_Name: Grass Ground 01
   m_TagString: Untagged
@@ -31,6 +32,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &3906475195388531582
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 524982221384868788}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.999596, y: 1.725774, z: 2.9912033}
+  m_Center: {x: -1.4951994, y: 0.81594753, z: -1.492403}
 --- !u!1 &524982221384868790
 GameObject:
   m_ObjectHideFlags: 0
