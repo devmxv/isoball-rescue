@@ -27,15 +27,8 @@ public class Enemy : MonoBehaviour
             //Reduce Health
             //Debug.Log("HIT!");
             //FindObjectOfType<Player>().ReduceHealth(1);
-
-
             //---Game Over!
-            //FindObjectOfType<Ball>().PlayDeathSound();
-            
-            //---Attempt so enemies stop moving
-            //_myRigidBody.velocity = Vector3.zero;
-            
-
+            FindObjectOfType<Ball>().PlayDeathSound();                                    
             UIManager.Instance.EnableLosePanel();            
             Debug.Log("Game Over!");
             //LevelManager.Instance.LoadGameOver();

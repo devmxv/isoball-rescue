@@ -12,6 +12,7 @@ public class Ball : MonoBehaviour
     [SerializeField] int health = 2;
 
     [SerializeField] AudioClip playerDeathSFX;
+    private float _playerDeathSFXVolume = 0.1f;
 
 
 
@@ -46,7 +47,7 @@ public class Ball : MonoBehaviour
 
     public void PlayDeathSound()
     {
-        AudioSource.PlayClipAtPoint(playerDeathSFX, Camera.main.transform.position);
+        AudioSource.PlayClipAtPoint(playerDeathSFX, Camera.main.transform.position, _playerDeathSFXVolume);
     }
 
     private void OnDestroy()
