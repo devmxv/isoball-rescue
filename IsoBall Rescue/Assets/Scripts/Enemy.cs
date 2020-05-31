@@ -28,6 +28,7 @@ public class Enemy : MonoBehaviour
             //Debug.Log("HIT!");
             //FindObjectOfType<Player>().ReduceHealth(1);
             //---Game Over!
+            GameSession.Instance.stopAllGame = true;
             FindObjectOfType<Ball>().PlayDeathSound();                                    
             UIManager.Instance.EnableLosePanel();
 

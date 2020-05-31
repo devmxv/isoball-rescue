@@ -23,7 +23,7 @@ public class Player : MonoBehaviour
     {
 
         //---Mouse click to destroy enemy cars
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && GameSession.Instance.stopAllGame == false)
         {
             RaycastHit hit;
             //---Get the mousePosition when clicking
