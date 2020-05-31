@@ -43,6 +43,8 @@ public class GameSession : MonoBehaviour
     //---When it is available to start processing
     public static bool slowmoAvailable;
 
+    public bool stopAllGame;
+
     private Coroutine _slowMoCoroutine;
         
     //---Get the index of the scene
@@ -60,6 +62,7 @@ public class GameSession : MonoBehaviour
         isSlowMoActive = false;
         slowmoReady = false;
         slowmoAvailable = true;
+        stopAllGame = false;
         //losePanel.SetActive(false);   
 
         
@@ -67,7 +70,7 @@ public class GameSession : MonoBehaviour
     }
 
     private void Update()
-    {
+    {              
         HandleSlowmo();                
     }
 
@@ -140,7 +143,7 @@ public class GameSession : MonoBehaviour
 
     public void ShowGameOver()
     {
-        //FindObjectOfType<UIManager>().EnableLosePanel();
+        //FindObjectOfType<UIManager>().EnableLosePanel();        
         UIManager.Instance.EnableLosePanel();                
     }
 

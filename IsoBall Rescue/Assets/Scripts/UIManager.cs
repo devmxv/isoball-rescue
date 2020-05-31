@@ -34,9 +34,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject losePanel;
     [SerializeField] GameObject pausePanel;
 
-    public static bool gameIsPaused = false;
-
-
+    public static bool gameIsPaused = false;    
 
     private void Awake()
     {
@@ -103,7 +101,7 @@ public class UIManager : MonoBehaviour
 
     public void EnableLosePanel()
     {
-        losePanel.SetActive(true);
+        losePanel.SetActive(true);        
         Time.timeScale = 0;
     }
 
