@@ -12836,6 +12836,16 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ResumeGame
       objectReference: {fileID: 0}
+    - target: {fileID: 673103463135249366, guid: 682c0417166b4e449a9981ac6620edf3,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -28.599976
+      objectReference: {fileID: 0}
+    - target: {fileID: 673103463135249366, guid: 682c0417166b4e449a9981ac6620edf3,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 137.90002
+      objectReference: {fileID: 0}
     - target: {fileID: 673103463493637473, guid: 682c0417166b4e449a9981ac6620edf3,
         type: 3}
       propertyPath: m_AnchorMax.y
