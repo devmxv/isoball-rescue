@@ -90,7 +90,8 @@ public class UIManager : MonoBehaviour
     public void ResetSlowMo()
     {        
         //Debug.Log("Slow Mo Restarted!" + GameSession._isSlowMoActive);
-         _sliderSlowMoValue.value = 0;                
+         _sliderSlowMoValue.value = 0;
+        _slowMoText.SetActive(false);
     }
 
     //---Set off the lose panel when losing (lol)
