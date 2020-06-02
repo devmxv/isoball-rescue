@@ -77,7 +77,7 @@ public class UIManager : MonoBehaviour
             }
             else
             {
-                ShowPauseMenu();
+                ShowPauseMenu();                
             }
 
         }
@@ -107,9 +107,10 @@ public class UIManager : MonoBehaviour
 
     public void ShowPauseMenu()
     {
-        //bool gamePaused = GameSession.GameIsPaused;
+        //bool gamePaused = GameSession.GameIsPaused;        
         pausePanel.SetActive(true);
         Time.timeScale = 0f;
+        GameSession.Instance.stopAllGame = true;
         gameIsPaused = true;
         
         
@@ -119,6 +120,7 @@ public class UIManager : MonoBehaviour
     {
         pausePanel.SetActive(false);
         Time.timeScale = 1;
+        GameSession.Instance.stopAllGame = false;
         gameIsPaused = false;
     }
 

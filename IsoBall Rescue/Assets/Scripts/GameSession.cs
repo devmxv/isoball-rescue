@@ -195,7 +195,7 @@ public class GameSession : MonoBehaviour
         if(slowmoReady == true)
         {
             UIManager.Instance.EnableSlowmoText();            
-            //---Using right click of mouse to activate SlowMo
+            //---Using right click of mouse to activate SlowMo and game is not paused
             if (Input.GetMouseButtonDown(1) && isSlowMoActive == false)
             {
                 //---Set the counter back to 0
@@ -206,35 +206,15 @@ public class GameSession : MonoBehaviour
                     StopCoroutine(_slowMoCoroutine);
                     //StartCoroutine(ResetSlowmo());                    
                 }
+                //---Restart the slowmo availability after 5 seconds
+                //---so the player cannot have it instantly
                 _slowMoCoroutine = StartCoroutine(SlowMoStart());               
                 slowmoAvailable = false;
                 Invoke("ResetSlowMoStatus", 5f);
                 UIManager.Instance.ResetSlowMo();
-                AddSlowmoUsage(1);
-                
-                
-            }
-
-        //--Checks if there is enough score to activate SloMo
-        //if (slowmoCountValue >= scoreToEnableSlowmo)
-        //{
-            
-        //    UIManager.Instance.EnableSlowmoText();
-        //    //---Using right click of mouse to activate SlowMo
-        //    if (Input.GetMouseButtonDown(1) && isSlowMoActive == false)
-        //    {
-        //        //---Set the counter back to 0
-        //        slowmoCount = 0;
-        //        //---if there is a coroutine executing, then it will stop
-        //        if (_slowMoCoroutine != null)
-        //        {
-        //            StopCoroutine(_slowMoCoroutine);
-        //            //StartCoroutine(ResetSlowmo());                    
-        //        }
-        //        _slowMoCoroutine = StartCoroutine(SlowMoStart());
-        //        AddSlowmoUsage(1);
-        //        slowmoReady = false;
-        //    }
+                //---TODO: Check how many time the slowMo has been used
+                AddSlowmoUsage(1);                                
+            }        
         }        
     }
     
@@ -257,20 +237,7 @@ public class GameSession : MonoBehaviour
     {
         PlayerPrefs.SetInt("HighScores", GetScore());
     }
-
-
-
-
-    //---Enable Slow Mo
-    //TimeManager.Instance.SetSlowMo();
-    //yield return new WaitForSecondsRealtime(1f);
-    //---Return slider value to 0
-    //UIManager.Instance.ResetSlowMo();
-    //Debug.Log("SlowMo Active: " + _isSlowMoActive);
-    //_isSlowMoActive = false;
-    //TimeManager.Instance.UnsetSlowmo();
-
-
+    
     //private const float SLOWMO_EASE_IN_TIME = 1.0f;
     //private const float SLOWMO_WAIT_TIME = 3.0f;
     //private const float SLOWMO_EASE_OUT_TIME = 1.0f;
@@ -311,26 +278,5 @@ public class GameSession : MonoBehaviour
     //        Debug.Log(lerpedTime);
     //        yield return new WaitForEndOfFrame();
 
-    //    } while (lerpedTime > 0);
-
-
-
-
-    //    Time.timeScale = 1;
-    //    Debug.Log("<color=red><b>Ending SlowMo</b></color> " + Time.unscaledTime);
-    //    _isSlowMoActive = false;
-
-
-    //    //---Enable Slow Mo
-    //    //TimeManager.Instance.SetSlowMo();
-    //    //yield return new WaitForSecondsRealtime(1f);
-    //    //---Return slider value to 0
-    //    //UIManager.Instance.ResetSlowMo();
-    //    //Debug.Log("SlowMo Active: " + _isSlowMoActive);
-    //    //_isSlowMoActive = false;
-    //    //TimeManager.Instance.UnsetSlowmo();
-
-
-
-    //}   
+    //    } while (lerpedTime > 0);       
 }
