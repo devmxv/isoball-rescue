@@ -12,14 +12,7 @@ public class GameOverManager : MonoBehaviour
     void Start()
     {
         _finalScore = transform.Find("Final Score Number").gameObject;
-        _finalScore.GetComponent<Text>().text = PlayerPrefs.GetInt("HighScores").ToString();
-        //if (_finalScore)
-        //{
-        //    Debug.Log("Found!");
-        //} else
-        //{
-        //    Debug.Log("Not found");
-        //}
+        _finalScore.GetComponent<Text>().text = PlayerPrefs.GetInt("HighScores").ToString();        
     }
 
     // Update is called once per frame
