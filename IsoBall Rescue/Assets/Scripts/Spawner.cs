@@ -37,6 +37,6 @@ public class Spawner : MonoBehaviour
 
     private void Spawn()
     {
-        Instantiate(objectPrefab, transform.position, Quaternion.identity);
+        Instantiate(objectPrefab, transform.position, Quaternion.Euler(0,180,0));
     }
 }
