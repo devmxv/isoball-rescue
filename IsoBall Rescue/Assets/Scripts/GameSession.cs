@@ -235,7 +235,20 @@ public class GameSession : MonoBehaviour
     //---Saves Score to PlayerPrefs file (WIP)
     public void SaveScore()
     {
-        PlayerPrefs.SetInt("HighScores", GetScore());
+        //---Get Saved high score
+        int _currentHighScore = PlayerPrefs.GetInt("HighScores");
+        int _sessionScore = GetScore();
+
+        if(_sessionScore >= _currentHighScore)
+        {
+            PlayerPrefs.SetInt("HighScores", _sessionScore);
+        } else
+        {
+            PlayerPrefs.SetInt("HighScores", _currentHighScore);
+        }
+
+
+        
     }
     
     //private const float SLOWMO_EASE_IN_TIME = 1.0f;
