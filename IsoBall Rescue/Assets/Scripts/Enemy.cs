@@ -7,9 +7,11 @@ public class Enemy : MonoBehaviour
 {
     //public int speed;
     //public GameObject ball;
-    public NavMeshAgent enemy;
+    public NavMeshAgent enemy;    
+    [Header ("Death")]
+    [SerializeField] ParticleSystem destroyParticleSystem;
     [SerializeField] AudioClip enemyDestroySFX;
-       
+
     // Update is called once per frame
     void Update()
     {        
@@ -48,8 +50,15 @@ public class Enemy : MonoBehaviour
     {
         AudioSource.PlayClipAtPoint(enemyDestroySFX, Camera.main.transform.position);
     }
-
     
+    public void DestroyEnemy()
+    {
+        Instantiate(destroyParticleSystem, transform.position, Quaternion.identity);
+        PlayDestroyAudio();
+        //---Add 1 to slowMoCounter so each 5 points the player has access to slowMo
+        GameSession.Instance.AddSlowmoCount(1);
+        GameSession.Instance.AddToScore(1);
+    }    
 
 
 
