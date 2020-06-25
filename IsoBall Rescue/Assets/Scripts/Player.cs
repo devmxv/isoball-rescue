@@ -34,10 +34,8 @@ public class Player : MonoBehaviour
                 if (hit.collider.gameObject.tag == "Enemy")
                 {
                     //Debug.DrawLine(Camera.main.transform.position, hit.point, Color.green, 0.5f);
-                    FindObjectOfType<Enemy>().PlayDestroyAudio();
-                    //---Add 1 to slowMoCounter so each 5 points the player has access to slowMo
-                    GameSession.Instance.AddSlowmoCount(1);
-                    GameSession.Instance.AddToScore(1);
+                    FindObjectOfType<Enemy>().DestroyEnemy();                    
+                                        
                     Destroy(hit.collider.gameObject);
                 }
             }            

@@ -405,6 +405,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 4076685323212284596}
+  destroyParticleSystem: {fileID: 4619183384462539303, guid: 0900ca6113d93674b9e7bdf117a993d8,
+    type: 3}
   enemyDestroySFX: {fileID: 8300000, guid: 02a5dc831551b4846915f9260dbdf629, type: 3}
 --- !u!195 &4076685323212284596
 NavMeshAgent:
